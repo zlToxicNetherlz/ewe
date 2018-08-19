@@ -1,6 +1,6 @@
 module Main where
 
-import Paths_ewe (version)
+import Paths_iron_ewe (version)
 import System.Environment(getArgs)
 import System.IO(openFile, hClose, IOMode(..), hGetContents, stdin, stdout
                 ,stderr, hPutStr, hPutStrLn)

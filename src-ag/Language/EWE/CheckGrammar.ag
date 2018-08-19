@@ -104,7 +104,7 @@ sem Instr
   | IB    lhs.res = { Right () }
   | INI   lhs.res = { Right () }
 
-include "AbsSyn.ag"
+include "AbsSyn"
 include "PPProg.ag"
 
 {

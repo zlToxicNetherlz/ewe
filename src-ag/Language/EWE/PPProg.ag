@@ -126,4 +126,4 @@ sem Instr
 (<==>) :: String -> Doc -> Doc
 s <==> doc = text s $$ doc
 }
--- include "AbsSyn.ag"
+-- include "AbsSyn"
