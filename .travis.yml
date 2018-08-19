@@ -1,0 +1,4 @@
+language: haskell
+ghc:
+- "8.2.2"
+- "7.10.3"
