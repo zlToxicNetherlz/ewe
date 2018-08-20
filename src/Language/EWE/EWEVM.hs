@@ -1,2 +1,2 @@
-module Language.EWE.VM where
+module Language.EWE.EWEVM where
 
