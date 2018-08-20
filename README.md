@@ -1,3 +1,2 @@
-# iron-ewe
-
-[![Build Status](https://travis-ci.org/zlToxicNetherlz/iron-ewe.svg?branch=master)](https://travis-ci.org/zlToxicNetherlz/iron-ewe)
+iron-ewe [![Travis (.org)](https://img.shields.io/travis/zlToxicNetherlz/iron-ewe.svg?style=flat-square)](https://github.com/zlToxicNetherlz/iron-ewe.git)
+========
