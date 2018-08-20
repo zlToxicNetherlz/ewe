@@ -37,6 +37,7 @@ tokens :-
        (\>|\>\=|\<|\<\=|\=|\<\>)    { returnCond }
        "M"                          { returnResWrd }
        "PC"                         { returnResWrd }
+       "randInt"                    { returnResWrd }
        "readInt"                    { returnResWrd }
        "writeInt"                   { returnResWrd }
        "readStr"                    { returnResWrd }

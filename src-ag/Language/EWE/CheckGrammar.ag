@@ -92,6 +92,7 @@ sem Instr
   | IMod  lhs.res = { @dest.res <--> @left.res <--> @right.res }
   | IMRI  lhs.res = { @dest.res <--> @oper.res }
   | IMMR  lhs.res = { @dest.res <--> @oper.res }
+  | IRA   lhs.res = { @oper.res }
   | IRI   lhs.res = { @oper.res }
   | IWI   lhs.res = { @oper.res }
   | IRS   lhs.res = { @left.res <--> @right.res }

@@ -42,6 +42,7 @@ data Instr | IMMI  dest :: MRef Int         -- Move a int into memory
            | IMod  dest,left,right ::  MRef -- Mod two Memory References
            | IMRI  dest,oper :: MRef Int    -- Move to Memory Ref
            | IMMR  dest :: MRef Int oper :: MRef -- Move to Memory Ref
+           | IRA   oper :: MRef             -- Write an random int into a Mem Ref
            | IRI   oper :: MRef             -- Read an Int into a Mem Ref
            | IWI   oper :: MRef             -- Write an Int from a Mem Ref
            | IRS   left, right :: MRef      -- Read a Str

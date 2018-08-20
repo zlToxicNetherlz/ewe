@@ -36,6 +36,7 @@ import Language.EWE.AbsSyn
        '>='       { Tkn _ (TknCond ">=") }
        'PC'       { Tkn _ (TknResWrd "PC") }
        'M'        { Tkn _ (TknResWrd "M") }
+       'randInt'  { Tkn _ (TknResWrd "randInt") }
        'readInt'  { Tkn _ (TknResWrd "readInt") }
        'writeInt' { Tkn _ (TknResWrd "writeInt") }
        'readStr'  { Tkn _ (TknResWrd "readStr") }
@@ -68,6 +69,7 @@ Instr : MemRef ':=' int                           { IMMI $1 $3  }
       | MemRef ':=' MemRef '%' MemRef             { IMod $1 $3 $5 }
       | MemRef ':=' 'M' '[' MemRef '+' int ']'    { IMRI $1 $5 $7 }
       | 'M' '[' MemRef '+' int ']' ':=' MemRef    { IMMR $3 $5 $8 }
+      | 'randInt' '(' MemRef ')'                  { IRA $3 }
       | 'readInt' '(' MemRef ')'                  { IRI $3 }
       | 'writeInt' '(' MemRef ')'                 { IWI $3 }
       | 'readStr' '(' MemRef ',' MemRef ')'       { IRS $3 $5 }

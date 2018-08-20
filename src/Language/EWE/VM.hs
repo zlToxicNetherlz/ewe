@@ -1,16 +1,20 @@
 
-module Language.EWE.VM(runVM,execVM) where
+module Language.EWE.VM(runVM, execVM) where
 
 import Language.EWE.AbsSyn
 import Language.EWE.Utils(emptyProg, equates, stms)
+import System.Random
+
 import qualified Data.List as L
 import qualified Data.Maybe as M
 import qualified Data.Map.Strict as Map
 import Control.Monad.Trans.State.Lazy
 import Control.Monad.Trans.Class(lift)
-import Data.Char (ord,chr)
-import System.IO(hFlush, stdout,hPutStrLn,hPutStr)
-import System.Exit(exitWith,ExitCode(..))
+
+import Data.Char (ord, chr)
+
+import System.IO(hFlush, stdout, hPutStrLn, hPutStr)
+import System.Exit(exitWith, ExitCode(..))
 
 -- type Memory = [(Int,Int)]
 type Memory = Map.Map Int Int
@@ -77,6 +81,11 @@ evalInstr = do
       st'  = execInstr ci st
   if (hasSideEffects ci)
     then case (ci) of
+         (IRA _)   -> do
+             i <- lift $ randomRIO (0, 1000 :: Int)
+             let st'' = execIRA i ci st
+             put st''
+             evalInstr
          (IRI _)   -> do
              i <- lift $ readInt "Enter an integer: "
              let st'' = execIRI i ci st
@@ -195,6 +204,12 @@ execInstr (IFS mra cond mrb s) state =
            , pc  = npc
            }
 
+execIRA :: Int -> Instr -> StateVM -> StateVM
+execIRA i (IRA mr) state =
+  state { mem = inMem (mRef mr (ge state)) i (mem state)
+        , pc  = incrPC state
+        }
+
 execIRI :: Int -> Instr -> StateVM -> StateVM
 execIRI i (IRI mr) state =
   state { mem = inMem (mRef mr (ge state)) i (mem state)
@@ -277,6 +292,7 @@ comp f mrr mra mrb state =
            }
 
 hasSideEffects :: Instr -> Bool
+hasSideEffects (IRA _)   = True
 hasSideEffects (IRI _)   = True
 hasSideEffects (IWI _)   = True
 hasSideEffects (IRS _ _) = True
