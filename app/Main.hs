@@ -63,7 +63,7 @@ compilerOpts argv =
   case getOpt Permute options argv of
     (o,n,[]) -> return (foldl (flip id) defaultOptions o,n)
     (_,_,errs) -> ioError (userError (concat errs ++ usageInfo header options))
-    where header = "Usage: ewe [OPTION...] files..."
+    where header = "Usage: iron-ewe [OPTION...] files..."
 
 showScannerOutput :: Either String Tkns -> IO ()
 showScannerOutput scanout =
@@ -81,7 +81,7 @@ showHelp :: IO ()
 showHelp = do
   mapM_ (hPutStrLn stderr) (lines $ usageInfo header options)
   exitSuccess
-  where header = "Usage: ewe [OPTION...] files..."
+  where header = "Usage: iron-ewe [OPTION...] files..."
 
 execProg :: Options -> Bool -> Either String Prog -> IO ()
 execProg _    True   _           = return ()
@@ -120,7 +120,7 @@ checkGrammar prog = let inh = Inh_Prog
 processStaticOptions :: Options -> IO ()
 processStaticOptions opts =
   if optShowVersion opts
-  then do hPutStrLn stdout $ "ewe version: " ++ (showVersion version)
+  then do hPutStrLn stdout $ "iron-ewe version: " ++ (showVersion version)
           exitSuccess
   else if optShowHelp opts
        then showHelp
